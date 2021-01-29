@@ -1,4 +1,4 @@
-# Git笔记_v1.7.6
+# Git笔记_v1.7.7
 
 - [Git笔记_v1.7.6](#git笔记_v176)
   - [入门](#入门)
@@ -29,11 +29,11 @@
 
 ---
 
-## 入门
+## 1 入门
 
 git命令行操作跟Linux一样
 
-### 1 安装
+### 1.1 安装
 
 1. Use git from git bash only..., 其他默认下一步
 2. 查看环境变量配置, 没有则手动配置, path: E:\programs\Git\bin
@@ -46,7 +46,7 @@ git命令行操作跟Linux一样
 
 该配置文件在本地计算机c:\user\用户\.gitconfig
 
-### 2 git status, git commit等中文信息乱码问题
+### 1.2 git status, git commit等中文信息乱码问题
 
 ```git
 git config --global gui.encoding utf-8
@@ -55,7 +55,7 @@ git config --global core.quotepath false
 git config --global svn.pathnameecoding utf-8
 ```
 
-### 3 本地git与远程github保持登录联通
+### 1.3 本地git与远程github保持登录联通
 
 git 的远程仓库托管网站目前就[github](https://github.com)一个常用
 
@@ -85,7 +85,7 @@ git 的远程仓库托管网站目前就[github](https://github.com)一个常用
         ssh -T git@github.com
         ```
 
-### 4 本地创建git项目与远程项目进行关联
+### 1.4 本地创建git项目与远程项目进行关联
 
 本地创建git项目与远程项目进行关联时，要保持本地电脑PC端github账号登录状态。（一般是本地电脑，这个跟ssh配置有关。ssh配置指向其他地址，则其他地址上的github账号保持登录状态即可）[参考本地git与远程github保持登录联通](#3-本地git与远程github保持登录联通)
 
@@ -129,22 +129,22 @@ git 的远程仓库托管网站目前就[github](https://github.com)一个常用
 
     2. 本地项目中, git命令行输入 `git pull` 即可更新.
 
-## 进阶
+## 2 进阶
 
-### 1 git优势
+### 2.1 git优势
 
 1. 本地版本控制；
 2. 重写提交说明
 3. 每次操作都可以回滚，还原；
 4. 分支系统，分布式。
 
-### 2 git三种状态
+### 2.2 git三种状态
 
 1. 已修改（modified）
 2. 已暂存（staged）
 3. 已提交（committed）
 
-### 3 设置用户和邮箱
+### 2.3 设置用户和邮箱
 
 Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为的配置变量。这些变量存储再三个不同的位置：
 
@@ -156,7 +156,7 @@ Git 自带一个 git config 的工具来帮助设置控制 Git 外观和行为�
 
 每一个级别会覆盖上一个级别的配置，所以，**.git/config** 的配置变量会覆盖 **/etc/gitconfig** 中的配置变量。
 
-### 4 将某个目录纳入 git 管理
+### 2.4 将某个目录纳入 git 管理
 
 ```git
 git init // 此时，git 命令行中显示master，项目目录下自动生成 .git 文件夹。（.git：负责版本控制的目录）
@@ -170,7 +170,7 @@ git commit // 进入 vi 操作界面，写提交的备注，适合较长的备�
 git checkout -- <file>
 ```
 
-### 5 git log
+### 2.5 git log
 
 1. 查看提交日志，会发现如下内容：
 
@@ -188,7 +188,7 @@ git checkout -- <file>
     git log --pretty=format:"%h -%an, %ar : %s"
     ```
 
-### 6 删除用户配置信息
+### 2.6 删除用户配置信息
 
 1. 找到 .gitconfig 文件直接删掉（最直接）
 2. 或通过命令删除
@@ -198,7 +198,7 @@ git checkout -- <file>
     git config --global(或 --system 或 --local) --unset user.email
     ```
 
-### 7 已提交的文件-修改后-撤销回滚
+### 2.7 已提交的文件-修改后-撤销回滚
 
 ![07-01](./img/07-01.jpg)
 
@@ -208,7 +208,7 @@ git checkout -- <file>
 git checkout -- <file>
 ```
 
-### 8 工作区文件 -> 暂存区后：撤销 add 操作
+### 2.8 工作区文件 -> 暂存区后：撤销 add 操作
 
 ```git
 git reset HEAD <file>
@@ -218,13 +218,13 @@ git reset HEAD <file>
 
 ![08-01](./img/08-01.jpg)
 
-### 9 提交问题与用户邮箱配置
+### 2.9 提交问题与用户邮箱配置
 
 场景：第一个邮箱用户git提交了文件，第二个邮箱用户（把第一个邮箱用户改成第二个的）在同一个本地环境（跟第一个用户环境保持一致，就用第一个的项目，说白了就是改了个邮箱用户名而已，其他都没变）的项目中进行git提交操作（如新建了一个文件，修改了文件后提交到对象区）。此时，git log查看到，之前的配置没变，记录此次的配置。
 
 ![09-01](./img/09-01.jpg)
 
-### 10 删除已提交到对象区（即分支区）的文件
+### 2.10 删除已提交到对象区（即分支区）的文件
 
 1. git rm 操作删除：删除 -> 在暂存区
 
@@ -246,13 +246,13 @@ git reset HEAD <file>
     git commit -m "彻底删除"
     ```
 
-### 11 撤销已提交文件的删除
+### 2.11 撤销已提交文件的删除
 
 1. 对象区（分支区）- `git rm < file >` ->
 2. 暂存区 - `git reset HEAD < file >` -> (注意：这里抛出了delete信息)
 3. 工作区 - `git checkout -- < file >`
 
-### 12 重命名文件
+### 2.12 重命名文件
 
 1. git命令的文件重命名
 
@@ -277,7 +277,7 @@ git reset HEAD <file>
     git status // 每次操作可以用此命令查看文件的状态，定位文件所在哪个区，需执行的可操作提示
     ```
 
-### 13 注释重写提交说明
+### 2.13 注释重写提交说明
 
 **git log** // 出现冒号，按 q 退出模式
 
@@ -287,7 +287,7 @@ git reset HEAD <file>
 
 ![13-02](./img/13-02.jpg)
 
-### 14 忽略文件：.gitignore
+### 2.14 忽略文件：.gitignore
 
 git 项目中，提交前，先忽略不需要提交的文件，再把剩下的提交到对象区（分支区）。
 
@@ -300,7 +300,7 @@ a.properties // 列出忽略提交的文件即可
 保存该 **.gitignore** 文件，接着，退出 vi 编辑模式，返回 git 命令行，输入 git status
 查看文件状态，该项目列表中已经没有了 a.properties 文件，它被忽略了。
 
-### 15 通配符
+### 2.15 通配符
 
 使用场景：如 **.gitignore** 文件编写需要排除的文件。以下是常见的通配符：
 
@@ -318,7 +318,7 @@ a.properties // 列出忽略提交的文件即可
 
 7. git 项目中创建的**空目录**，默认自动忽略，git status 查不到此目录信息。
 
-### 16 分支
+### 2.16 分支
 
 1. 查看分支：`git branch`
 
@@ -362,7 +362,7 @@ a.properties // 列出忽略提交的文件即可
 
     4. 如果在非主分支中，file1 文件进行了写操作（即增删改），并且add，commit。在 master 中无法删除该非主分支。
 
-### 17 分支-提交链（分支合并与冲突）
+### 2.17 分支-提交链（分支合并与冲突）
 
 ![17-01](./img/17-01.jpg)
 
@@ -392,9 +392,9 @@ git log // 观察 dev 的 sha1 值 -> dev2，此时，分支 dev 已经领先 ma
 .....未完待续
 ```
 
-## 常见错误
+## 3 常见错误
 
-### 1 ssh: connect to host github.com port 22: Connection timed out
+### 3.1 ssh: connect to host github.com port 22: Connection timed out
 
 解决方法:
 
@@ -422,3 +422,32 @@ ls
 其中,YourEmail为申请github账号所绑定的邮箱.
 
 保存之后再次执行"ssh -T git@github.com"时, 会出现如下提示, 一路回车"yes"即可.
+
+## 4 日常技能
+
+### 4.1 git add . 后的删除暂存区
+
+```bash
+git rm -r -f --cached .
+```
+
+### 4.2 git的分支推送设置dev默认项
+
+```bash
+ git push --set-upstream origin dev
+```
+
+### 4.3  git中的CRLF和LF
+
+> 说明：参考官方文档，有详细叙述（切记网上瞎搜索，浪费时间，还不一定是对的）
+
+### 4.4 GitHub Desktop工具
+
+可解决分支删不掉的问题
+
+### 4.5 查看分支合并图
+
+```bash
+git log --oneline --graph --decorate --all
+```
+
